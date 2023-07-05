@@ -1,4 +1,4 @@
-const url = "http://localhost:4005/api/categorias/";
+const url = "http://localhost:4002/api/categorias/";
 
 export const getcategorias = async ()=>{
     try {
@@ -38,10 +38,24 @@ export const getcategoria = async (addCategories)=>{
     
 }
 
-export const deletecategoria = async (categoriasUp,id)=>{
+export const  updateCategories = async (id)=>{
     try {
         await fetch(`${url}/${id}`,{
             method:'PUT',
+            headers:{
+                'Content-type':'application/json'
+            }
+        })
+        window.location.href = "producto.html";
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const deletecategoria = async (categoriasUp,id)=>{
+    try {
+        await fetch(`${url}/${id}`,{
+            method:'DELETE',
             body: JSON.stringify(categoriasUp),
             headers:{
                 'Content-type':'application/json'
@@ -54,16 +68,3 @@ export const deletecategoria = async (categoriasUp,id)=>{
     
 }
 
-export const  updateCategories = async (id)=>{
-    try {
-        await fetch(`${url}/${id}`,{
-            method:'DELETE',
-            headers:{
-                'Content-type':'application/json'
-            }
-        })
-        window.location.href = "producto.html";
-    } catch (error) {
-        console.log(error);
-    }
-}
